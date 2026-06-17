@@ -1,0 +1,17 @@
+[terminal]
+vt = 1
+
+[default_session]
+# Controller-first greeter MVP.
+command = "python3 /usr/local/lib/htdm/greeter/controller_greeter_mvp.py"
+user = "greeter"
+
+[initial_session]
+# Optional autologin-style fallback path for game mode boot.
+command = "/usr/local/lib/htdm/session/launch-session.sh game gamescope"
+user = "gaming"
+
+# Notes:
+# - Desktop sessions should be launched by greeter/controller only after PAM
+#   auth using service htdm-desktop-auth.
+# - Game mode uses the non-auth policy service htdm-game-open.

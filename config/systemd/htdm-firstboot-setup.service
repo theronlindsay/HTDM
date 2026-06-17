@@ -1,0 +1,12 @@
+[Unit]
+Description=HTDM first boot provisioning hook
+After=local-fs.target
+ConditionPathExists=/usr/share/htdm/scripts/install/apply-defaults.sh
+
+[Service]
+Type=oneshot
+ExecStart=/usr/share/htdm/scripts/install/apply-defaults.sh
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target

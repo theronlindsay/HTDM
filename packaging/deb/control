@@ -1,0 +1,27 @@
+Source: htdm
+Section: admin
+Priority: optional
+Maintainer: HTDM Team <packaging@example.invalid>
+Standards-Version: 4.7.0
+Rules-Requires-Root: no
+Build-Depends: debhelper-compat (= 13)
+
+Package: htdm-core
+Architecture: all
+Depends: bash
+Description: HTDM core session wrapper scaffolding
+ Core wrappers and policy templates for authenticated desktop and
+ unauthenticated game-mode launch paths.
+
+Package: htdm-config
+Architecture: all
+Depends: htdm-core
+Description: HTDM deployment configuration templates
+ Includes PAM service snippets, greetd config example, systemd presets,
+ tmpfiles, and sysusers templates.
+
+Package: htdm-installer
+Architecture: all
+Depends: bash
+Description: HTDM bootstrap installation helper scripts
+ Distro-detection bootstrap and default deployment hooks.

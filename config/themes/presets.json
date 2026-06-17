@@ -1,0 +1,70 @@
+{
+  "recommended": "modern-neutral",
+  "presets": [
+    {
+      "id": "modern-neutral",
+      "name": "Modern Neutral",
+      "tokens": {
+        "color.bg": "#111318",
+        "color.surface": "#1B1F27",
+        "color.text": "#E7EAF0",
+        "color.accent": "#5DA3FF",
+        "radius.md": 14,
+        "shadow.level2": "0 8 20 rgba(0,0,0,0.35)",
+        "font.scale": 1.0
+      }
+    },
+    {
+      "id": "kde-inspired",
+      "name": "KDE-Inspired",
+      "tokens": {
+        "color.bg": "#111421",
+        "color.surface": "#1A1F33",
+        "color.text": "#EAF1FF",
+        "color.accent": "#3DAEE9",
+        "radius.md": 10,
+        "shadow.level2": "0 8 18 rgba(0,0,0,0.32)",
+        "font.scale": 1.0
+      }
+    },
+    {
+      "id": "gnome-inspired",
+      "name": "GNOME-Inspired",
+      "tokens": {
+        "color.bg": "#1D1D20",
+        "color.surface": "#25262A",
+        "color.text": "#F2F3F5",
+        "color.accent": "#3584E4",
+        "radius.md": 12,
+        "shadow.level2": "0 7 18 rgba(0,0,0,0.34)",
+        "font.scale": 1.0
+      }
+    },
+    {
+      "id": "steam-inspired",
+      "name": "Steam-Inspired",
+      "tokens": {
+        "color.bg": "#0A1422",
+        "color.surface": "#101E31",
+        "color.text": "#E5F0FF",
+        "color.accent": "#66C0F4",
+        "radius.md": 12,
+        "shadow.level2": "0 8 18 rgba(0,0,0,0.38)",
+        "font.scale": 1.0
+      }
+    },
+    {
+      "id": "high-contrast",
+      "name": "High Contrast",
+      "tokens": {
+        "color.bg": "#000000",
+        "color.surface": "#111111",
+        "color.text": "#FFFFFF",
+        "color.accent": "#FFD400",
+        "radius.md": 4,
+        "shadow.level2": "0 0 0 rgba(0,0,0,0)",
+        "font.scale": 1.1
+      }
+    }
+  ]
+}

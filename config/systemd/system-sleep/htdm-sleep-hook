@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+SCRIPT="/usr/local/lib/htdm/power/htdm-sleep-hook.sh"
+
+case "${1:-}" in
+  pre)
+    "$SCRIPT" pre "${2:-suspend}"
+    ;;
+  post)
+    "$SCRIPT" post "${2:-suspend}"
+    ;;
+esac

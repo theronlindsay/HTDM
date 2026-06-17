@@ -1,0 +1,2 @@
+enable greetd.service
+enable htdm-firstboot-setup.service

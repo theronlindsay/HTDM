@@ -1,0 +1,5 @@
+# PAM service for unauthenticated game-mode session start.
+# No auth stage on purpose: this path is constrained to the gaming account.
+
+account   include   system-auth
+session   include   system-auth

@@ -1,0 +1,6 @@
+config/pam/* usr/share/htdm/config/pam/
+config/greetd/* usr/share/htdm/config/greetd/
+config/systemd/* usr/share/htdm/config/systemd/
+config/systemd-preset/* usr/share/htdm/config/systemd-preset/
+config/tmpfiles/* usr/share/htdm/config/tmpfiles/
+config/sysusers/* usr/share/htdm/config/sysusers/

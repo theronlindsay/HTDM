@@ -1,0 +1,41 @@
+pkgbase=htdm
+pkgname=('htdm-core' 'htdm-config' 'htdm-installer')
+pkgver=0.1.0
+pkgrel=1
+arch=('any')
+license=('MIT')
+source=()
+sha256sums=()
+
+package_htdm-core() {
+  pkgdesc="HTDM core session wrapper scaffolding"
+  depends=('bash')
+
+  install -d "${pkgdir}/usr/share/htdm/scripts"
+  install -d "${pkgdir}/usr/share/htdm/config"
+  cp -a "${srcdir}/scripts/session" "${pkgdir}/usr/share/htdm/scripts/"
+  cp -a "${srcdir}/config/policy" "${pkgdir}/usr/share/htdm/config/"
+}
+
+package_htdm-config() {
+  pkgdesc="HTDM deployment config templates"
+  depends=('htdm-core')
+
+  install -d "${pkgdir}/usr/share/htdm/config"
+  cp -a "${srcdir}/config/pam" "${pkgdir}/usr/share/htdm/config/"
+  cp -a "${srcdir}/config/greetd" "${pkgdir}/usr/share/htdm/config/"
+  cp -a "${srcdir}/config/systemd" "${pkgdir}/usr/share/htdm/config/"
+  cp -a "${srcdir}/config/systemd-preset" "${pkgdir}/usr/share/htdm/config/"
+  cp -a "${srcdir}/config/tmpfiles" "${pkgdir}/usr/share/htdm/config/"
+  cp -a "${srcdir}/config/sysusers" "${pkgdir}/usr/share/htdm/config/"
+}
+
+package_htdm-installer() {
+  pkgdesc="HTDM bootstrap installation tooling"
+  depends=('bash')
+
+  install -d "${pkgdir}/usr/share/htdm/scripts"
+  install -d "${pkgdir}/usr/share/htdm/docs"
+  cp -a "${srcdir}/scripts/install" "${pkgdir}/usr/share/htdm/scripts/"
+  cp -a "${srcdir}/docs/deployment" "${pkgdir}/usr/share/htdm/docs/"
+}

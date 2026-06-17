@@ -1,0 +1,46 @@
+name: Package RPM
+
+on:
+  push:
+    branches:
+      - "**"
+    tags:
+      - "v*"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build-rpm:
+    runs-on: ubuntu-latest
+    container:
+      image: fedora:40
+    steps:
+      - name: Install build dependencies
+        run: dnf install -y git rpm-build
+
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build RPM packages
+        run: |
+          set -euo pipefail
+          mkdir -p .rpmbuild/{BUILD,BUILDROOT,RPMS,SOURCES,SPECS,SRPMS}
+          rpmbuild -bb packaging/rpm/htdm.spec \
+            --define "_topdir $PWD/.rpmbuild" \
+            --define "_sourcedir $PWD"
+
+      - name: Upload RPM artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: htdm-rpm
+          path: .rpmbuild/RPMS/noarch/*.rpm
+          if-no-files-found: error
+
+      - name: Draft release with RPM assets
+        if: startsWith(github.ref, 'refs/tags/v')
+        uses: softprops/action-gh-release@v2
+        with:
+          draft: true
+          files: .rpmbuild/RPMS/noarch/*.rpm

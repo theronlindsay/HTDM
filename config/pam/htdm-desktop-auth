@@ -1,0 +1,7 @@
+# PAM service for authenticated desktop session launches.
+# Intended for GNOME/KDE wrappers only.
+
+auth      include   system-auth
+account   include   system-auth
+password  include   system-auth
+session   include   system-auth

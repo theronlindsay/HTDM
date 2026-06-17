@@ -1,0 +1,5 @@
+name: htdm-bazzite
+description: Example BlueBuild recipe that includes HTDM
+base-image: ghcr.io/ublue-os/bazzite
+modules:
+  - from-file: module.yml

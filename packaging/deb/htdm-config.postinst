@@ -1,0 +1,15 @@
+#!/bin/sh
+set -eu
+
+case "$1" in
+  configure)
+    if command -v systemd-tmpfiles >/dev/null 2>&1; then
+      systemd-tmpfiles --create /usr/share/htdm/config/tmpfiles/htdm.conf || true
+    fi
+    if command -v systemctl >/dev/null 2>&1; then
+      systemctl preset greetd.service htdm-firstboot-setup.service >/dev/null 2>&1 || true
+    fi
+    ;;
+esac
+
+exit 0

@@ -1,0 +1,14 @@
+name: htdm
+description: Install and preset HTDM components on BlueBuild images
+stages:
+  - type: rpm-ostree
+    install:
+      - htdm-core
+      - htdm-config
+      - htdm-installer
+  - type: script
+    snippets:
+      - groupadd -f steamlib
+      - id -u gaming >/dev/null 2>&1 || useradd -r -m -g steamlib gaming
+      - systemd-tmpfiles --create /usr/share/htdm/config/tmpfiles/htdm.conf || true
+      - systemctl preset greetd.service htdm-firstboot-setup.service || true

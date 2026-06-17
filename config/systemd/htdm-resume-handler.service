@@ -1,0 +1,12 @@
+[Unit]
+Description=HTDM resume action handler
+After=suspend.target hibernate.target
+
+[Service]
+Type=oneshot
+EnvironmentFile=-/etc/htdm/session-policy.env
+ExecStart=/usr/local/lib/htdm/power/htdm-resume-handler.sh
+
+[Install]
+WantedBy=suspend.target
+WantedBy=hibernate.target
