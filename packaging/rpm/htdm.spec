@@ -4,6 +4,7 @@ Release:        1%{?dist}
 Summary:        HTPC display manager scaffolding package
 License:        MIT
 BuildArch:      noarch
+Source0:        %{name}-%{version}.tar.gz
 
 # Scaffold for split subpackages.
 %global _pkgdocdir %{_docdir}/%{name}
@@ -34,16 +35,17 @@ Requires: bash
 Cross-distro bootstrap and defaults application helper scripts.
 
 %prep
-# No source archive in scaffold mode.
+%setup -q
 
 %build
 # No build step for shell/config-only scaffold.
 
 %install
+srcdir="%{_builddir}/%{name}-%{version}"
 install -d %{buildroot}%{_datadir}/htdm
-cp -a config %{buildroot}%{_datadir}/htdm/
-cp -a scripts %{buildroot}%{_datadir}/htdm/
-cp -a docs %{buildroot}%{_datadir}/htdm/
+cp -a "$srcdir/config" %{buildroot}%{_datadir}/htdm/
+cp -a "$srcdir/scripts" %{buildroot}%{_datadir}/htdm/
+cp -a "$srcdir/docs" %{buildroot}%{_datadir}/htdm/
 
 %files core
 %{_datadir}/htdm/scripts/session

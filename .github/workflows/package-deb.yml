@@ -27,17 +27,21 @@ jobs:
         run: |
           set -euo pipefail
           build_root="$RUNNER_TEMP/htdm-deb-src"
+          artifact_dir="$GITHUB_WORKSPACE/.artifacts/deb"
           rsync -a --exclude .git ./ "$build_root/"
           mkdir -p "$build_root/debian"
           cp -a "$build_root/packaging/deb/." "$build_root/debian/"
           chmod +x "$build_root/debian/rules"
           (cd "$build_root" && dpkg-buildpackage -us -uc -b)
+          rm -rf "$artifact_dir"
+          mkdir -p "$artifact_dir"
+          cp -a "$RUNNER_TEMP"/htdm_*.deb "$artifact_dir/"
 
       - name: Upload DEB artifacts
         uses: actions/upload-artifact@v4
         with:
           name: htdm-deb
-          path: ${{ runner.temp }}/htdm-deb-src/../*.deb
+          path: ${{ github.workspace }}/.artifacts/deb/*.deb
           if-no-files-found: error
 
       - name: Draft release with DEB assets
@@ -45,4 +49,4 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           draft: true
-          files: ${{ runner.temp }}/htdm-deb-src/../*.deb
+          files: ${{ github.workspace }}/.artifacts/deb/*.deb

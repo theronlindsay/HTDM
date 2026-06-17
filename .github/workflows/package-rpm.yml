@@ -26,10 +26,16 @@ jobs:
       - name: Build RPM packages
         run: |
           set -euo pipefail
+          version="$(awk '/^Version:[[:space:]]+/ { print $2; exit }' packaging/rpm/htdm.spec)"
+          archive_root="htdm-${version}"
           mkdir -p .rpmbuild/{BUILD,BUILDROOT,RPMS,SOURCES,SPECS,SRPMS}
+          tar --exclude-vcs --exclude=.rpmbuild \
+            -czf ".rpmbuild/SOURCES/${archive_root}.tar.gz" \
+            --transform "s,^\.,${archive_root}," \
+            .
           rpmbuild -bb packaging/rpm/htdm.spec \
             --define "_topdir $PWD/.rpmbuild" \
-            --define "_sourcedir $PWD"
+            --define "_sourcedir $PWD/.rpmbuild/SOURCES"
 
       - name: Upload RPM artifacts
         uses: actions/upload-artifact@v4
